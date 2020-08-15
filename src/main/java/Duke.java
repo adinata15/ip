@@ -8,7 +8,8 @@ public class Duke {
                 " Hello! I'm Duke\n" +
                 " What can I do for you?\n" +
                 "____________________________________________________________\n" +
-                " Bye. Hope to see you again soon!");
+                " Bye. Hope to see you again soon!"
+        );
         return;
     }
 }
