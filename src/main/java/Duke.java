@@ -2,7 +2,7 @@ package main.java;
 
 public class Duke {
     public static void main(String[] args) {
-        //printing out greetings
+        //print out greetings
         System.out.println(
                 "____________________________________________________________\n" +
                 " Hello! I'm Duke\n" +
