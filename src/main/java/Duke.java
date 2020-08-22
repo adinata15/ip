@@ -3,29 +3,32 @@ package main.java;
 import java.util.Scanner;
 
 public class Duke {
-    private static String[] listItems=new String[100];//user's to-do-list (max 100 items)
+    private static Task[] tasks=new Task[100];//user's to-do-list (max 100 items)
     private static int listSize=0;//current list size
     
     //add input to list
     public static void addList(String userInput){
-        listItems[listSize++]=userInput;
+        Task task = new Task(userInput);
+        tasks[listSize++] = task;
         System.out.printf(
             "____________________________________________________________\n" +
             " added: %s\n" +
             "____________________________________________________________\n"
-            ,userInput
+            ,task.description
         );
     }
     
     //display current list
     public static void displayList(){
-        System.out.printf(
-                "____________________________________________________________\n");
+        System.out.print(
+                "____________________________________________________________\n"+
+                " Here are the tasks in your list:\n"
+        );
         //print out all list's items
-        for (int i=0;i< listSize;i++){
-            System.out.printf(" %d. %s\n",i+1,listItems[i]);
+        for (int i = 0;i < listSize;i++){
+            System.out.printf(" %d.[%s] %s\n",i+1,tasks[i].getStatusIcon(),tasks[i].description);
         }
-        System.out.printf(
+        System.out.print(
                 "____________________________________________________________\n");
     }
     
@@ -49,7 +52,13 @@ public class Duke {
             //display list
             if(userInput.equals("list")){
                 displayList();
-            }else {
+            } else if(userInput.startsWith("done")){
+                //take word after "done" as task index
+                String taskIndexString = userInput.split(" ")[1];
+                Integer taskIndex = Integer.parseInt(taskIndexString);
+                //mark task as done
+                tasks[taskIndex-1].markAsDone();
+            } else {
                 //add user input to list
                 addList(userInput);
             }
@@ -62,7 +71,5 @@ public class Duke {
             " Bye. Hope to see you again soon!\n"+
             "____________________________________________________________\n"
         );
-        
-        return;
     }
 }
