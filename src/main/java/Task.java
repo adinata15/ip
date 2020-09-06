@@ -23,18 +23,22 @@ public class Task {
     
     //print out done/undone symbol
     public char getTaskType() {
+        char taskTypeChar;//char to represent task type
         switch (taskType){
         case TODO:
-            //return type will break the execution of the function
-            //if break is used, error will appear as the break is unreachable
-            return 'T';
+            taskTypeChar = 'T';
+            break;
         case EVENT:
-            return 'E';
+            taskTypeChar = 'E';
+            break;
         case DEADLINE:
-            return 'D';
+            taskTypeChar = 'D';
+            break;
         default:
-            return 'U';//undefined task type
+            taskTypeChar = 'U';//undefined task type
+            break;
         }
+        return taskTypeChar;
     }
     
     //mark task as done
