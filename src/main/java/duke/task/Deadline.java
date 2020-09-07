@@ -1,4 +1,6 @@
-package main.java;
+package main.java.duke.task;
+
+import main.java.duke.Duke;
 
 public class Deadline extends Task{
     private String by;//deadline due time
@@ -17,7 +19,7 @@ public class Deadline extends Task{
                 "   [%c][%s] %s (by: %s)\n"+
                 " Now you have %d tasks in the list.\n" +
                 "____________________________________________________________\n"
-                ,getTaskType(),getStatusIcon(),getDescription(),getBy(),Duke.getListSize()+1
+                ,getTaskType(),getStatusIcon(),getDescription(),getBy(), Duke.getListSize()+1
         );
     }
     

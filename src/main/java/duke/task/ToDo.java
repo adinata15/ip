@@ -1,4 +1,6 @@
-package main.java;
+package main.java.duke.task;
+
+import main.java.duke.Duke;
 
 public class ToDo extends Task{
     public ToDo(String description,TaskType taskType) {
@@ -13,7 +15,7 @@ public class ToDo extends Task{
                 "   [%c][%s] %s\n"+
                 " Now you have %d tasks in the list.\n" +
                 "____________________________________________________________\n"
-                ,getTaskType(),getStatusIcon(),getDescription(),Duke.getListSize()+1
+                ,getTaskType(),getStatusIcon(),getDescription(), Duke.getListSize()+1
         );
     }
 }
