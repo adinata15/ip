@@ -1,4 +1,4 @@
-package main.java.duke;
+package main.java.duke.task;
 
 public class Task {
     private String description;//task description

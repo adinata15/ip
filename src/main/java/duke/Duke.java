@@ -1,4 +1,12 @@
-package main.java;
+package main.java.duke;
+
+import main.java.duke.exception.EmptyTodoException;
+import main.java.duke.exception.InvalidCommandException;
+import main.java.duke.task.Deadline;
+import main.java.duke.task.Event;
+import main.java.duke.task.Task;
+import main.java.duke.task.TaskType;
+import main.java.duke.task.ToDo;
 
 import java.util.Scanner;
 
@@ -91,7 +99,7 @@ public class Duke {
         //assign task's information
         description = userInput.substring(taskDescriptionStartIndex + 1);
         //check whether todo description is valid
-        if (taskDescriptionStartIndex!=4 || description.isEmpty()) { //4 is for "todo" letter
+        if (taskDescriptionStartIndex != 4 || description.isEmpty()) { //4 is for "todo" letter
             throw new EmptyTodoException();
         }
         taskType = TaskType.TODO;
