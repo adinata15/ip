@@ -13,13 +13,17 @@ public class Duke {
     }
 
     //add user input to list
-    public static void addList(String userInput) {
+    public static void addList(String userInput) throws InvalidCommandException {
         //first word of user's input
         String userInputFirstWord = userInput.split(" ")[0];
         //create task type based on user input
         switch (userInputFirstWord) {
         case "todo":
-            addTodo(userInput);
+            try {
+                addTodo(userInput);
+            } catch (EmptyTodoException e) {
+                displayEmptyTodoMessage();
+            }
             break;
         case "deadline":
             addDeadline(userInput);
@@ -28,8 +32,7 @@ public class Duke {
             addEvent(userInput);
             break;
         default:
-            System.out.println("Invalid command!");
-            break;
+            throw new InvalidCommandException();
         }
     }
 
@@ -76,7 +79,7 @@ public class Duke {
     }
 
     //add todo to list
-    private static void addTodo(String userInput) {
+    private static void addTodo(String userInput) throws EmptyTodoException {
         TaskType taskType;
         String description;
 
@@ -87,6 +90,10 @@ public class Duke {
         taskDescriptionStartIndex = userInput.indexOf(" ");
         //assign task's information
         description = userInput.substring(taskDescriptionStartIndex + 1);
+        //check whether todo description is valid
+        if (taskDescriptionStartIndex!=4 || description.isEmpty()) { //4 is for "todo" letter
+            throw new EmptyTodoException();
+        }
         taskType = TaskType.TODO;
         //create and assign information to new ToDo
         ToDo toDo = new ToDo(description, taskType);
@@ -127,7 +134,11 @@ public class Duke {
                 markDone(userInput);
             } else {
                 //add user input to list
-                addList(userInput);
+                try {
+                    addList(userInput);
+                } catch (InvalidCommandException e) {
+                    displayInvalidCommandMessage();
+                }
             }
             //receive next user command
             userInput = input.nextLine();
@@ -139,7 +150,7 @@ public class Duke {
         //take word after "done" as task index
         String taskIndexString = userInput.split(" ")[1];
         // convert taskIndexString into an integer
-        Integer taskIndex = Integer.parseInt(taskIndexString);
+        int taskIndex = Integer.parseInt(taskIndexString);
         //mark task as done
         tasks[taskIndex - 1].markAsDone();
     }
@@ -159,6 +170,24 @@ public class Duke {
                 "____________________________________________________________\n" +
                         " Hello! I'm Duke\n" +
                         " What can I do for you?\n" +
+                        "____________________________________________________________\n"
+        );
+    }
+
+    //display error when invalid command
+    private static void displayInvalidCommandMessage() {
+        System.out.print(
+                "____________________________________________________________\n" +
+                        " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n" +
+                        "____________________________________________________________\n"
+        );
+    }
+
+    //display error when todo field is empty
+    private static void displayEmptyTodoMessage() {
+        System.out.print(
+                "____________________________________________________________\n" +
+                        " ☹ OOPS!!! The description of a todo cannot be empty.\n" +
                         "____________________________________________________________\n"
         );
     }
