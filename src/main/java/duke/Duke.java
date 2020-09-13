@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class Duke {
     public static final int MAX_LIST_SIZE = 100;
     private static Task[] tasks = new Task[MAX_LIST_SIZE];//user's to-do-list (max 100 items)
+    private static Task[] tempTasksList = new Task[MAX_LIST_SIZE];//temporary task list used for removing task (max 100 items)
     private static int listSize = 0;//current list size
 
     //get current list size
@@ -140,6 +141,9 @@ public class Duke {
             } else if (userInput.startsWith("done")) {
                 //mark the given activity as done
                 markDone(userInput);
+            } else if (userInput.startsWith("delete")) {
+                //delete the given activity
+                deleteTask(userInput);
             } else {
                 //add user input to list
                 try {
@@ -161,6 +165,39 @@ public class Duke {
         int taskIndex = Integer.parseInt(taskIndexString);
         //mark task as done
         tasks[taskIndex - 1].markAsDone();
+    }
+
+    //delete an activity
+    private static void deleteTask(String userInput) {
+        //take word after "delete" as task index
+        String taskIndexString = userInput.split(" ")[1];
+        // convert taskIndexString into an integer
+        int taskIndex = Integer.parseInt(taskIndexString);
+        int tempTaskListIndex = 0;
+        Task removedTask = null;
+        //leave out the removed task from list
+        for (int i = 0; i < tasks.length; i++) {
+            if (i == taskIndex-1) {
+                removedTask = tasks[i];
+            } else {
+                tempTasksList[tempTaskListIndex++] = tasks[i];
+            }
+        }
+        listSize--;//reduce listSize by 1
+        tasks = tempTasksList;//re-assign new list of tasks
+        displayDeleteMessage(removedTask);
+    }
+
+    //print delete task message
+    public static void displayDeleteMessage(Task removedTask) {
+        System.out.printf(
+                "____________________________________________________________\n" +
+                        " Noted. I've removed this task:\n" +
+                        "   [%s][%s] %s\n" +
+                        " Now you have %d tasks in the list.\n" +
+                        "____________________________________________________________\n",
+                removedTask.getTaskType(), removedTask.getStatusIcon(), removedTask.getDescription(), getListSize()
+        );
     }
 
     //display bye message
