@@ -8,16 +8,16 @@ import main.java.duke.task.Task;
 import main.java.duke.task.TaskType;
 import main.java.duke.task.ToDo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     public static final int MAX_LIST_SIZE = 100;
-    private static Task[] tasks = new Task[MAX_LIST_SIZE];//user's to-do-list (max 100 items)
-    private static int listSize = 0;//current list size
+    private static ArrayList<Task> tasks = new ArrayList<>(MAX_LIST_SIZE);//user's to-do-list (max 100 items)
 
-    //get current list size
+    //get list size
     public static int getListSize() {
-        return listSize;
+        return tasks.size();
     }
 
     //add user input to list
@@ -62,7 +62,7 @@ public class Duke {
         taskType = TaskType.EVENT;
         //create and assign information to new event
         Event event = new Event(description, taskType, at);
-        tasks[listSize++] = event;
+        tasks.add(event);
     }
 
     //add deadline to list
@@ -83,7 +83,7 @@ public class Duke {
         taskType = TaskType.DEADLINE;
         //create and assign information to new deadline
         Deadline deadline = new Deadline(description, taskType, by);
-        tasks[listSize++] = deadline;
+        tasks.add(deadline);
     }
 
     //add todo to list
@@ -105,7 +105,7 @@ public class Duke {
         taskType = TaskType.TODO;
         //create and assign information to new ToDo
         ToDo toDo = new ToDo(description, taskType);
-        tasks[listSize++] = toDo;
+        tasks.add(toDo);
     }
 
     //display current list
@@ -115,8 +115,8 @@ public class Duke {
                         " Here are the tasks in your list:\n"
         );
         //print out all list's items
-        for (int i = 0; i < listSize; i++) {
-            tasks[i].displayListPerTask(i);
+        for (int i = 0; i < tasks.size(); i++) {
+            tasks.get(i).displayListPerTask(i);
         }
         System.out.print(
                 "____________________________________________________________\n"
@@ -140,6 +140,9 @@ public class Duke {
             } else if (userInput.startsWith("done")) {
                 //mark the given activity as done
                 markDone(userInput);
+            } else if (userInput.startsWith("delete")) {
+                //delete the given activity
+                deleteTask(userInput);
             } else {
                 //add user input to list
                 try {
@@ -160,7 +163,30 @@ public class Duke {
         // convert taskIndexString into an integer
         int taskIndex = Integer.parseInt(taskIndexString);
         //mark task as done
-        tasks[taskIndex - 1].markAsDone();
+        tasks.get(taskIndex-1).markAsDone();
+    }
+
+    //delete an activity
+    private static void deleteTask(String userInput) {
+        //take word after "delete" as task index
+        String taskIndexString = userInput.split(" ")[1];
+        // convert taskIndexString into an integer
+        int taskIndex = Integer.parseInt(taskIndexString);
+        //leave out the removed task from list
+        Task removedTask = tasks.remove(taskIndex-1);
+        displayDeleteMessage(removedTask);
+    }
+
+    //print delete task message
+    public static void displayDeleteMessage(Task removedTask) {
+        System.out.printf(
+                "____________________________________________________________\n" +
+                        " Noted. I've removed this task:\n" +
+                        "   [%s][%s] %s\n" +
+                        " Now you have %d tasks in the list.\n" +
+                        "____________________________________________________________\n",
+                removedTask.getTaskType(), removedTask.getStatusIcon(), removedTask.getDescription(), tasks.size()
+        );
     }
 
     //display bye message
