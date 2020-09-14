@@ -1,0 +1,1 @@
+T|1|shop groceries||E|0|competition|7pm||T|0|eat||E|0|sleep|12pm||D|0|robot fix|today||

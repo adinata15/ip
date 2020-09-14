@@ -8,16 +8,120 @@ import main.java.duke.task.Task;
 import main.java.duke.task.TaskType;
 import main.java.duke.task.ToDo;
 
+
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
     public static final int MAX_LIST_SIZE = 100;
     private static ArrayList<Task> tasks = new ArrayList<>(MAX_LIST_SIZE);//user's to-do-list (max 100 items)
+    public static final int MAX_TASK_LENGTH = 4;
+    public static final String filepath = "./data/duke.txt";//file path from root file
 
     //get list size
     public static int getListSize() {
         return tasks.size();
+    }
+
+    //retrieve past saved data
+    private static void handlePastData() {
+        File pastFile = new File(filepath); // create a File for the given file path
+        String wholeDoc = readFile(pastFile);
+        //when file is empty or not created
+        if (wholeDoc == null) {
+            return;//skip parsing data
+        }
+        //convert file entry to tasks
+        parseFile(wholeDoc);
+    }
+
+    //read file content
+    private static String readFile(File pastFile) {
+        String wholeDoc = null;
+        try {
+            //read previous data
+            Scanner s = new Scanner(pastFile);
+            while (s.hasNext()) {
+                wholeDoc = s.nextLine();
+            }
+        } catch (FileNotFoundException e) {
+            printFileNotFound();
+            return null;
+        }
+        return wholeDoc;
+    }
+
+    //display file not found error message
+    private static void printFileNotFound() {
+        System.out.println(" Are you first time user?\n" +
+                " I am unable to find your past data\n" +
+                "____________________________________________________________");
+    }
+
+    //convert file entry to tasks
+    private static void parseFile(String wholeDoc) {
+        //separate entry based on ||
+        String[] taskListFile = wholeDoc.split("\\|\\|", MAX_LIST_SIZE);
+        for (int i = 0; i < taskListFile.length - 1; i++) {//minus one to negate for last || on file
+            String[] taskDetails = taskListFile[i].split("\\|", MAX_TASK_LENGTH);
+            switch (taskDetails[0]) {
+            case "T":
+                addToDoFile(taskDetails);
+                break;
+            case "E":
+                addEventFile(taskDetails);
+                break;
+            case "D":
+                addDeadlineFile(taskDetails);
+                break;
+            default:
+                System.out.println("Error occur on retrieving previous data");
+            }
+        }
+    }
+
+    //add deadline from file
+    private static void addDeadlineFile(String[] taskDetails) {
+        Deadline deadline = new Deadline(taskDetails[2], TaskType.DEADLINE, taskDetails[3]);
+        tasks.add(deadline);
+        if (taskDetails[1].equals("1")) {
+            tasks.get(tasks.size()-1).markAsDone();
+        }
+    }
+
+    //add event from file
+    private static void addEventFile(String[] taskDetails) {
+        Event event = new Event(taskDetails[2], TaskType.EVENT, taskDetails[3]);
+        tasks.add(event);
+        if (taskDetails[1].equals("1")) {
+            tasks.get(tasks.size()-1).markAsDone();
+        }
+    }
+
+    //add todo from file
+    private static void addToDoFile(String[] taskDetails) {
+        ToDo toDo = new ToDo(taskDetails[2], TaskType.TODO);
+        tasks.add(toDo);
+        if (taskDetails[1].equals("1")) {
+            tasks.get(tasks.size()-1).markAsDone();
+        }
+    }
+
+    //save all list data
+    private static void saveData() {
+        try {
+            FileWriter fw = new FileWriter(filepath, false);
+            for (Task task:tasks) {
+                task.saveToFile(fw);
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //add user input to list
@@ -42,6 +146,7 @@ public class Duke {
         default:
             throw new InvalidCommandException();
         }
+        tasks.get(tasks.size()-1).respondOnAdd();
     }
 
     //add event to list
@@ -164,6 +269,7 @@ public class Duke {
         int taskIndex = Integer.parseInt(taskIndexString);
         //mark task as done
         tasks.get(taskIndex-1).markAsDone();
+        tasks.get(taskIndex-1).printDoneMsg();
     }
 
     //delete an activity
@@ -229,7 +335,9 @@ public class Duke {
     //main function
     public static void main(String[] args) {
         displayGreetingMessage();
+        handlePastData();
         handleCommand();
+        saveData();
         displayByeMessage();
     }
 }
