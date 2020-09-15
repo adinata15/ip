@@ -39,7 +39,7 @@ public class Deadline extends Task {
     @Override
     //generate string for File save
     public String getStringToFile() {
-        String textToAppend = getTaskType() + "|" + (getStatusIcon()=="\u2713"?"1":"0") + "|" + getDescription() + "|" + getBy() + "||";
+        String textToAppend = getTaskType() + "|" + (getStatusIcon() == "\u2713" ? "1" : "0") + "|" + getDescription() + "|" + getBy() + "||";
         return textToAppend;
     }
 }

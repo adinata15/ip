@@ -1,1 +1,1 @@
-T|1|shop groceries||E|0|competition|7pm||T|0|eat||E|0|sleep|12pm||D|0|robot fix|today||
+E|0|James' bday|22 Jan||D|1|project Mbot|23 Jan||T|0|sleep||

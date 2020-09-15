@@ -89,7 +89,7 @@ public class Duke {
         Deadline deadline = new Deadline(taskDetails[2], TaskType.DEADLINE, taskDetails[3]);
         tasks.add(deadline);
         if (taskDetails[1].equals("1")) {
-            tasks.get(tasks.size()-1).markAsDone();
+            tasks.get(tasks.size() - 1).markAsDone();
         }
     }
 
@@ -98,7 +98,7 @@ public class Duke {
         Event event = new Event(taskDetails[2], TaskType.EVENT, taskDetails[3]);
         tasks.add(event);
         if (taskDetails[1].equals("1")) {
-            tasks.get(tasks.size()-1).markAsDone();
+            tasks.get(tasks.size() - 1).markAsDone();
         }
     }
 
@@ -107,21 +107,34 @@ public class Duke {
         ToDo toDo = new ToDo(taskDetails[2], TaskType.TODO);
         tasks.add(toDo);
         if (taskDetails[1].equals("1")) {
-            tasks.get(tasks.size()-1).markAsDone();
+            tasks.get(tasks.size() - 1).markAsDone();
         }
     }
 
     //save all list data
     private static void saveData() {
         try {
+            createFile();
             FileWriter fw = new FileWriter(filepath, false);
-            for (Task task:tasks) {
+            for (Task task : tasks) {
                 task.saveToFile(fw);
             }
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cannot create file; reason: " + e.getMessage());
         }
+    }
+
+    //create new dir if required
+    private static void createFile() throws IOException {
+        File storagefile = new File(filepath);
+        if (storagefile.exists()) {
+            return;
+        }
+        if (!storagefile.getParentFile().exists()) {
+            storagefile.getParentFile().mkdirs();
+        }
+        storagefile.createNewFile();
     }
 
     //add user input to list
@@ -146,7 +159,7 @@ public class Duke {
         default:
             throw new InvalidCommandException();
         }
-        tasks.get(tasks.size()-1).respondOnAdd();
+        tasks.get(tasks.size() - 1).respondOnAdd();
     }
 
     //add event to list
@@ -268,8 +281,8 @@ public class Duke {
         // convert taskIndexString into an integer
         int taskIndex = Integer.parseInt(taskIndexString);
         //mark task as done
-        tasks.get(taskIndex-1).markAsDone();
-        tasks.get(taskIndex-1).printDoneMsg();
+        tasks.get(taskIndex - 1).markAsDone();
+        tasks.get(taskIndex - 1).printDoneMsg();
     }
 
     //delete an activity
@@ -279,7 +292,7 @@ public class Duke {
         // convert taskIndexString into an integer
         int taskIndex = Integer.parseInt(taskIndexString);
         //leave out the removed task from list
-        Task removedTask = tasks.remove(taskIndex-1);
+        Task removedTask = tasks.remove(taskIndex - 1);
         displayDeleteMessage(removedTask);
     }
 
