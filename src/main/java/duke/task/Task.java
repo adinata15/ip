@@ -1,18 +1,23 @@
 package main.java.duke.task;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public abstract class Task {
-    private String description;//task description
+    private final String description;
     private boolean isDone;//task condition
-    private TaskType taskType;//task type
+    private final TaskType taskType;
 
     public Task(String description, TaskType taskType) {
         this.description = description;
         this.taskType = taskType;
         isDone = false;
+    }
+
+    public Task(String description, TaskType taskType, String doneStatus) {
+        this.description = description;
+        this.taskType = taskType;
+        isDone = doneStatus.equals(1);
     }
 
     //get task description
@@ -79,9 +84,8 @@ public abstract class Task {
         );
     }
 
-    //respond after successful addition to list
-    public abstract void respondOnAdd();
-
     //generate string for File save
     public abstract String getStringToFile();
+
+    public abstract void respondOnAdd();
 }
