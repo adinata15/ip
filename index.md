@@ -1,37 +1,37 @@
-## Welcome to GitHub Pages
+# Welcome to Adi's Duke Project
 
-You can use the [editor on GitHub](https://github.com/adinata15/ip/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Hi! Welcome to Adi's **Duke** project :smiley:. This is an automated **Task Scheduler** that can change your life forever (hopefully:neutral_face:).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Function
+- Add task (Todo, Event, Deadline) :notebook:
+_OPTION_: `/by` or `/at`
+_TASK_TYPE_: `todo` or `event` or `deadline`
+Command: TASK_TYPE
+Format: `[TASK_TYPE] DESCRIPTION [OPTION]TIME`
 
-### Markdown
+- List available tasks :page_facing_up:
+Command: `list`
+Format: `find`
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- Find task based on description :mag:
+Command: `find`
+Format: `find KEYWORD`
 
-```markdown
-Syntax highlighted code block
+- Delete task :no_entry_sign:
+Command: `delete`
+Format: `delete TASK_INDEX`
 
-# Header 1
-## Header 2
-### Header 3
+- Mark task as done :heavy_check_mark:
+Command: `done`
+Format: `done TASK_INDEX`
 
-- Bulleted
-- List
+- More to come :smiley:
 
-1. Numbered
-2. List
+## Contributors
 
-**Bold** and _Italic_ and `Code` text
+This is a solo project TT.
 
-[Link](url) and ![Image](src)
-```
+## Contact Us
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/adinata15/ip/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- **Bug reports, Suggestions** : Email to [this email](adinatatan99@gmail.com) of you have any querries or suggestions.
+- **Contributing** : We welcome pull requests. Simply fork [this repository](https://github.com/adinata15/ip)
