@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Storage {
@@ -44,10 +45,10 @@ public class Storage {
                     TaskList.getTasks().add(new ToDo(taskDetails[2], TaskType.TODO, taskDetails[1]));
                     break;
                 case "E":
-                    TaskList.getTasks().add(new Event(taskDetails[2], TaskType.EVENT, taskDetails[3], taskDetails[1]));
+                    TaskList.getTasks().add(new Event(taskDetails[2], TaskType.EVENT, LocalDate.parse(taskDetails[3]), taskDetails[1]));
                     break;
                 case "D":
-                    TaskList.getTasks().add(new Deadline(taskDetails[2], TaskType.DEADLINE, taskDetails[3], taskDetails[1]));
+                    TaskList.getTasks().add(new Deadline(taskDetails[2], TaskType.DEADLINE, LocalDate.parse(taskDetails[3]), taskDetails[1]));
                     break;
                 default:
                     System.out.println("Error occur on retrieving previous data");
