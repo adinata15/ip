@@ -5,6 +5,7 @@ import main.java.duke.command.Command;
 import main.java.duke.command.DeleteCommand;
 import main.java.duke.command.DoneCommand;
 import main.java.duke.command.ExitCommand;
+import main.java.duke.command.FindCommand;
 import main.java.duke.command.ListCommand;
 import main.java.duke.exception.InvalidCommandException;
 
@@ -26,6 +27,8 @@ public class Parser {
             return new ListCommand(fullCommand);
         } else if (fullCommand.startsWith("done")) {
             return new DoneCommand(fullCommand);
+        } else if (fullCommand.startsWith("find")) {
+            return new FindCommand(fullCommand);
         } else if (fullCommand.startsWith("delete")) {
             return new DeleteCommand(fullCommand);
         } else if (

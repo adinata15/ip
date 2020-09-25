@@ -4,7 +4,6 @@ import main.java.duke.exception.EmptyTaskListException;
 import main.java.duke.task.Task;
 import main.java.duke.task.TaskList;
 
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -21,17 +20,15 @@ public class Ui {
         if (TaskList.getTasks() == null) {
             throw new EmptyTaskListException("Your task list is empty");
         }
-        System.out.print(
-                "____________________________________________________________\n" +
-                        " Here are the tasks in your list:\n"
+        Ui.showLine();
+        System.out.println(
+                " Here are the tasks in your list:"
         );
         //print out all list's items
         for (int i = 0; i < TaskList.getTasks().size(); i++) {
             TaskList.getTasks().get(i).displayListPerTask(i);
         }
-        System.out.print(
-                "____________________________________________________________\n"
-        );
+        Ui.showLine();
     }
 
     //print delete task message
@@ -65,8 +62,9 @@ public class Ui {
     //display file not found error message
     public static void displayFileNotFound() {
         showLine();
-        System.out.println(" Are you first time user?\n" +
-                " I am unable to find your past data"
+        System.out.println(
+                " Are you first time user?\n" +
+                        " I am unable to find your past data"
         );
         showLine();
     }

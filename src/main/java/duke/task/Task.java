@@ -20,7 +20,7 @@ public abstract class Task {
     public Task(String description, TaskType taskType, String doneStatus) {
         this.description = description;
         this.taskType = taskType;
-        isDone = doneStatus.equals(1);
+        isDone = doneStatus.equals("1");
     }
 
     //get task description
