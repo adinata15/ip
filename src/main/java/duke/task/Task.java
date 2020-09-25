@@ -3,6 +3,9 @@ package main.java.duke.task;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Task functionalities and objects.
+ */
 public abstract class Task {
     private final String description;
     private boolean isDone;//task condition
@@ -25,9 +28,8 @@ public abstract class Task {
         return description;
     }
 
-    //print out done/undone symbol
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        return (isDone ? "done" : "not done");
     }
 
 
@@ -84,7 +86,7 @@ public abstract class Task {
         );
     }
 
-    //generate string for File save
+    //abstract methods
     public abstract String getStringToFile();
 
     public abstract void respondOnAdd();

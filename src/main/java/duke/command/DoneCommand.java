@@ -11,6 +11,14 @@ public class DoneCommand extends Command {
         super(fullCommand);
     }
 
+    /**
+     * Mark given task as done.
+     *
+     * @param tasks   current task list
+     * @param ui      ui manager
+     * @param storage file storage manager
+     * @throws EmptyTaskListException task list is empty
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws EmptyTaskListException {
         if (tasks.checkEmpty()) {

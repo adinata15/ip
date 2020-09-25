@@ -2,6 +2,9 @@ package main.java.duke.task;
 
 import main.java.duke.Ui;
 
+/**
+ * Deadline task functionalities.
+ */
 public class Deadline extends Task {
     private String by;//deadline due time
 

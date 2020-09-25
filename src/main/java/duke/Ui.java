@@ -7,9 +7,16 @@ import main.java.duke.task.TaskList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Handles interaction with user.
+ */
 public class Ui {
 
-    //display current list
+    /**
+     * Display current task list
+     *
+     * @throws EmptyTaskListException if task list is empty
+     */
     public void displayList() throws EmptyTaskListException {
         if (TaskList.getTasks() == null) {
             throw new EmptyTaskListException("Your task list is empty");
@@ -55,20 +62,6 @@ public class Ui {
         showLine();
     }
 
-    //display error when invalid command
-    public static void displayInvalidCommandMessage() {
-        showLine();
-        System.out.print(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        showLine();
-    }
-
-    //display error when todo field is empty
-    public static void displayEmptyTodoMessage() {
-        showLine();
-        System.out.println(" ☹ OOPS!!! The description of a todo cannot be empty.");
-        showLine();
-    }
-
     //display file not found error message
     public static void displayFileNotFound() {
         showLine();
@@ -82,6 +75,11 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * Receives user command.
+     *
+     * @return user command as string
+     */
     public String readCommand() {
         //activate scanner
         Scanner input = new Scanner(System.in);

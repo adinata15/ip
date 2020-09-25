@@ -7,11 +7,21 @@ import main.java.duke.task.TaskList;
 
 import java.io.FileNotFoundException;
 
+/**
+ * Entry point of the Address Book application.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Duke {
+
     private final Ui ui;
     private final Storage storage;
-    private final TaskList tasks = new TaskList();
+    private TaskList tasks = new TaskList();
 
+    /**
+     * Sets up the required objects and loads up the data from the storage file.
+     *
+     * @param filePath path to storage file
+     */
     public Duke(String filePath) {
         ui = new Ui();
         ui.displayGreetingMessage();
@@ -23,10 +33,9 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        new Duke(Constants.filepath).run();
-    }
-
+    /**
+     * Reads and executes user command until "bye" is entered.
+     */
     public void run() {
         boolean isExit = false;
         while (!isExit) {
@@ -44,4 +53,7 @@ public class Duke {
         }
     }
 
+    public static void main(String[] args) {
+        new Duke(Constants.filepath).run();
+    }
 }

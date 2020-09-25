@@ -10,6 +10,13 @@ public class ExitCommand extends Command {
         super(fullCommand);
     }
 
+    /**
+     * Closes Duke and gives parting message.
+     *
+     * @param tasks   current task list
+     * @param ui      ui manager
+     * @param storage file storage manager
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.displayByeMessage();

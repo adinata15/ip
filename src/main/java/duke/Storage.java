@@ -15,6 +15,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Manages data storage and retrieval.
+ */
 public class Storage {
     private String filepath;
 
@@ -22,8 +25,12 @@ public class Storage {
         this.filepath = filepath;
     }
 
-    //retrieve past saved data
-    public void loadPastData() throws FileNotFoundException, NullPointerException {
+    /**
+     * Process past storage data.
+     *
+     * @throws FileNotFoundException if old file cannot be retrieved
+     */
+    public void loadPastData() throws FileNotFoundException {
         File pastFile = new File(filepath);
         String wholeDoc = null;
 
@@ -56,7 +63,9 @@ public class Storage {
         }
     }
 
-    //save all list data
+    /**
+     * Save data to storage.
+     */
     public void saveData() {
         try {
             File storageFile = new File(filepath);

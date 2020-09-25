@@ -8,12 +8,18 @@ import main.java.duke.command.ExitCommand;
 import main.java.duke.command.ListCommand;
 import main.java.duke.exception.InvalidCommandException;
 
-
+/**
+ * Parses user's input.
+ */
 public class Parser {
-
-    //handle user input commands
+    /**
+     * Determines command based on user's input.
+     *
+     * @param fullCommand user's input command
+     * @return command based on user's input
+     * @throws InvalidCommandException if user's input is invalid
+     */
     public static Command parse(String fullCommand) throws InvalidCommandException {
-        //execute command based on user's input until "bye" is entered
         if (fullCommand.equals("bye")) {
             return new ExitCommand(fullCommand);
         } else if (fullCommand.equals("list")) {

@@ -1,8 +1,10 @@
 package main.java.duke.task;
 
-import main.java.duke.Duke;
 import main.java.duke.Ui;
 
+/**
+ * Event task functionalities.
+ */
 public class Event extends Task {
     private String at;//event time
 

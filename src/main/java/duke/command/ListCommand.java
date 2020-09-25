@@ -11,6 +11,14 @@ public class ListCommand extends Command {
         super(fullCommand);
     }
 
+    /**
+     * Lists current task list.
+     *
+     * @param tasks   current task list
+     * @param ui      ui manager
+     * @param storage file storage manager
+     * @throws EmptyTaskListException  if task list is empty
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws EmptyTaskListException {
         if (tasks.checkEmpty()) {
