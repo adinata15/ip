@@ -14,7 +14,7 @@ public class ToDo extends Task {
     @Override
     //generate string for File save
     public String getStringToFile() {
-        String textToAppend = getTaskType() + "|" + (getStatusIcon() == "\u2713" ? "1" : "0")
+        String textToAppend = getTaskType() + "|" + (getStatusIcon().equals("done") ? "1" : "0")
                 + "|" + getDescription() + "||";
         return textToAppend;
     }
