@@ -5,6 +5,9 @@ import main.java.duke.Ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event task functionalities.
+ */
 public class Event extends Task {
     private LocalDate at;//event time
 

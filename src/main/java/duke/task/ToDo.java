@@ -2,6 +2,9 @@ package main.java.duke.task;
 
 import main.java.duke.Ui;
 
+/**
+ * Todo task functionalities.
+ */
 public class ToDo extends Task {
     public ToDo(String description, TaskType taskType) {
         super(description, taskType);

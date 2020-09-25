@@ -12,9 +12,17 @@ public class DeleteCommand extends Command {
         super(fullCommand);
     }
 
+    /**
+     * Remove given task from task list.
+     *
+     * @param tasks   current task list
+     * @param ui      ui manager
+     * @param storage file storage manager
+     * @throws EmptyTaskListException if task list is empty
+     */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws EmptyTaskListException{
-        if(tasks.checkEmpty()){
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws EmptyTaskListException {
+        if (tasks.checkEmpty()) {
             throw new EmptyTaskListException("your task list is empty");
         }
         //take word after "delete" as task index

@@ -6,9 +6,16 @@ import main.java.duke.task.TaskList;
 
 import java.util.Scanner;
 
+/**
+ * Handles interaction with user.
+ */
 public class Ui {
 
-    //display current list
+    /**
+     * Display current task list
+     *
+     * @throws EmptyTaskListException if task list is empty
+     */
     public void displayList() throws EmptyTaskListException {
         if (TaskList.getTasks() == null) {
             throw new EmptyTaskListException("Your task list is empty");
@@ -66,6 +73,11 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * Receives user command.
+     *
+     * @return user command as string
+     */
     public String readCommand() {
         //activate scanner
         Scanner input = new Scanner(System.in);
