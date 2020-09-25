@@ -4,26 +4,31 @@ Hi! Welcome to Adi's **Duke** project :smiley:. This is an automated **Task Sche
 
 ## Function
 - Add task (Todo, Event, Deadline) :notebook:
-_OPTION_: `/by` or `/at`
-_TASK_TYPE_: `todo` or `event` or `deadline`
-Command: TASK_TYPE
-Format: `[TASK_TYPE] DESCRIPTION [OPTION]TIME`
+  - _OPTION_: `/by` or `/at`
+  - _TASK_TYPE_: `todo` or `event` or `deadline`
+  - Command: TASK_TYPE
+  - Format: `[TASK_TYPE] DESCRIPTION [OPTION]TIME`
+  - Example: `event swim with Harris /at 2022-11-11`
 
 - List available tasks :page_facing_up:
-Command: `list`
-Format: `find`
+  - Command: `list`
+  - Format: `list`
+  - Example: `list`
 
 - Find task based on description :mag:
-Command: `find`
-Format: `find KEYWORD`
+  - Command: `find`
+  - Format: `find KEYWORD`
+  - Example: `find Harris`
 
 - Delete task :no_entry_sign:
-Command: `delete`
-Format: `delete TASK_INDEX`
+  - Command: `delete`
+  - Format: `delete TASK_INDEX`
+  - Example: `delete 1`
 
 - Mark task as done :heavy_check_mark:
-Command: `done`
-Format: `done TASK_INDEX`
+  - Command: `done`
+  - Format: `done TASK_INDEX`
+  - Example: `done 1`
 
 - More to come :smiley:
 
