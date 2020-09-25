@@ -1,38 +1,40 @@
 package main.java.duke.task;
 
-import main.java.duke.Duke;
 import main.java.duke.Ui;
 
-public class Event extends Task {
-    private String at;//event time
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, TaskType taskType, String at) {
+public class Event extends Task {
+    private LocalDate at;//event time
+
+    public Event(String description, TaskType taskType, LocalDate at) {
         super(description, taskType);
         this.at = at;
     }
 
-    public Event(String description, TaskType taskType, String at, String doneStatus) {
+    public Event(String description, TaskType taskType, LocalDate at, String doneStatus) {
         super(description, taskType, doneStatus);
         this.at = at;
     }
 
     //return event's at time
-    public String getAt() {
+    public LocalDate getAt() {
         return at;
     }
 
     @Override
     //display event information on list
     public void displayListPerTask(int taskIndex) {
-        System.out.printf(" %d.[%c][%s] %s (at:%s)\n"
-                , taskIndex + 1, getTaskType(), getStatusIcon(), getDescription(), at
+        System.out.printf(" %d.[%c][%s] %s (at: %s)\n"
+                , taskIndex + 1, getTaskType(), getStatusIcon(), getDescription(), at.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
         );
     }
 
     @Override
     //generate string for File save
     public String getStringToFile() {
-        String textToAppend = getTaskType() + "|" + (getStatusIcon() == "\u2713" ? "1" : "0") + "|"
+        String textToAppend = getTaskType() + "|" + (getStatusIcon().equals("done") ? "1" : "0") + "|"
                 + getDescription() + "|" + at + "||";
         return textToAppend;
     }
@@ -43,9 +45,9 @@ public class Event extends Task {
         Ui.showLine();
         System.out.printf(
                 " Got it. I've added this task:\n" +
-                        "   [%c][%s] %s (at:%s)\n" +
+                        "   [%c][%s] %s (at: %s)\n" +
                         " Now you have %d tasks in the list.\n"
-                , getTaskType(), getStatusIcon(), getDescription(), getAt(), TaskList.getTasks().size()
+                , getTaskType(), getStatusIcon(), getDescription(), at.format(DateTimeFormatter.ofPattern("MMM d yyyy")), TaskList.getTasks().size()
         );
         Ui.showLine();
     }

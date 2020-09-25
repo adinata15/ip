@@ -10,6 +10,8 @@ import main.java.duke.Ui;
 import main.java.duke.task.TaskType;
 import main.java.duke.task.ToDo;
 
+import java.time.LocalDate;
+
 public class AddCommand extends Command {
 
     public AddCommand(String fullCommand) {
@@ -27,9 +29,9 @@ public class AddCommand extends Command {
             int descriptionStartIndex = fullCommand.indexOf(" ") + 1;
             int descriptionEndIndex = fullCommand.indexOf("/");
             String description = descriptionEndIndex == -1 ?
-                    fullCommand.substring(descriptionStartIndex) :
-                    fullCommand.substring(descriptionStartIndex, descriptionEndIndex);
-            String time;
+                    fullCommand.substring(descriptionStartIndex).trim() :
+                    fullCommand.substring(descriptionStartIndex, descriptionEndIndex).trim();
+            LocalDate time;
             Task newTask;
             //create task type based on user input
             switch (commandType) {
@@ -37,11 +39,11 @@ public class AddCommand extends Command {
                 newTask = new ToDo(description, TaskType.TODO);
                 break;
             case "deadline":
-                time = fullCommand.split("/by")[1];
+                time = LocalDate.parse(fullCommand.split("/by")[1].trim());
                 newTask = new Deadline(description, TaskType.DEADLINE, time);
                 break;
             case "event":
-                time = fullCommand.split("/at")[1];
+                time = LocalDate.parse(fullCommand.split("/at")[1].trim());
                 newTask = new Event(description, TaskType.EVENT, time);
                 break;
             default:
