@@ -1,173 +1,151 @@
 # User Guide
+Duke is a **chat-bot app to assist you in task management via a Command Line Interface**.
 
-## Welcome to Adi's Duke Project
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [Add a new Todo task: `todo`](#adding-a-new-todo-task-todo)
+    * [Add a new Deadline task: `deadline`](#adding-a-new-deadline-task-deadline)
+    * [Add a new Event task: `event`](#adding-a-new-event-task-event)
+    * [List all tasks: `list`](#listing-all-tasks-list)
+    * [Mark a task as done: `done`](#marking-a-task-as-done-done)
+    * [Delete a task: `delete`](#deleting-a-task-delete)
+    * [Finding a task: `find`](#finding-a-task-find)
+    * [Exit the Duke: `bye`](#exiting-the-duke-bye)
+    * [Save the data](#saving-the-data)
+* [Command Summary](#command-summary)
 
-Hi! Welcome to Adi's **Duke** project :smiley:. This is an automated **Task Scheduler** that can change your life forever (hopefully...:neutral_face:).
+## Quick Start 
+1. Verify that you have Java 11 or above installed in your computer.
+2. Download the latest `ip.jar`.
+3. Copy the file to a folder where you want to run it from.
+4. Using the terminal, navigate to the path of `ip.jar`.
+5. Run `java -jar ip.jar`
+6. If the setup is correct, you should see a welcome message. Then, it is now ready to go.
 
-## Features 
+## Features
 
-### Feature 1
+### Adding a new Todo task: `todo`
+Adds a Todo to the task list.
 
-Add task (Todo, Event, Deadline) :notebook:
+Format: `todo DESCRIPTION`
 
-### Feature 2
+Example:
+`todo Watch Crash Landing on You`
 
-List tasks
+Expected output:
+```
+Got it. I've added this task:
+[T][X] Watch Crash Landing on You
+Now you have 1 task in the list.
+```
 
-### Feature 3
+### Adding a new Deadline task: `deadline`
+Adds a Deadline to the task list.
 
-Delete task
+Format: `deadline DESCRIPTION /by TIME`
 
-### Feature 4
+Example:
+`deadline Submit movie review /by 17 Nov`
 
-Mark task as done
+Expected output:
+```
+Got it. I've added this task:
+[D][X] Submit movie review (by: 17 Nov)
+Now you have 2 tasks in the list.
+```
 
-### Feature 5
+### Adding a new Event task: `event`
+Adds an Event to the task list.
 
-Find task
+Format: `event DESCRIPTION /at TIME`
 
-### Feature 6
+Example:
+`event Netflix party /at 9pm, Recess Week`
 
-Storage of past data
+Expected output:
+```
+Got it. I've added this task:
+[E][X] Netflix party (at: 9pm, Recess Week)
+Now you have 3 tasks in the list.
+```
 
-## Usage
+### Listing all tasks: `list`
+Shows a list of all tasks.
 
-### Create a todo items
+Expected output:
+```
+Here are the tasks in your list:
+1.[T][X] Watch Crash Landing on You
+2.[D][X] Submit movie review (by: 17 Nov)
+3.[E][X] Netflix party (at: 9pm, Recess Week)
+```
+### Marking a task as done: `done`
+Marks the specified task as done.
 
-Format: 
+Format: `done TASK_INDENTIFIER`
 
-`todo [task_description]`
-
-Example of usage: 
-
-`todo eat`
-
-Expected outcome:
-
- Got it. I've added this task:
- 
-   [T][not done] eat
- 
- Now you have 3 tasks in the list.
-
-### Create an event items
-
-Format: 
-
-`event [task_description] /at[event_time]`
-
-Example of usage: 
-
-`event meet Obama /at 2020-12-12`
-
-Expected outcome:
-
- Got it. I've added this task:
- 
-   [E][not done] meet Obama  (at: Dec 12 2020)
-   
- Now you have 4 tasks in the list.
-
-
-### Create an deadline items
-
-Format:
-
-`deadline [task_description] /by[deadline_time]`
-
-Example of usage: 
-
-`deadline approve internship /by 2020-12-12`
-
-Expected outcome:
-
- Got it. I've added this task:
- 
-   [D][not done] approve internship  (by: Dec 12 2020)
-   
- Now you have 5 tasks in the list.
-
-### Display list :page_facing_up:
-
-Format:
-
-`list`
-
-Example of usage: 
-
-`list`
-
-Expected outcome:
-
- Here are the tasks in your list:
- 
- 1.[T][not done] eat
- 
- 2.[E][not done] sleep  (at: Feb 23 2020)
- 
- 3.[E][not done] meet Obama  (at: Dec 12 2020)
- 
- 4.[D][not done] approve internship  (by: Dec 12 2020)
-
-### Mark task as done :heavy_check_mark:
-
-Format:
-
-`done [task_number]`
-
-Example of usage: 
-
+Example:
 `done 1`
 
-Expected outcome:
+Expected output:
+```
+Okay! I've marked this task as done: Keep on going!
+[T][V] Watch Crash Landing on You
+```
 
- Nice! I've marked this task as done:
- 
- [done] eat
+### Deleting a task: `delete`
+Deletes the specified task from the task list.
 
-### Delete a task :no_entry_sign:
+Format: `delete TASK_IDENTIFIER`
 
-Format:
-
-`delete [task_number]`
-
-Example of usage: 
-
+Example:
 `delete 1`
 
-Expected outcome:
+Expected output:
+```
+Noted. I've removed this task
+ [T][V] Watch Crash Landing on You
+Now you have 2 tasks in the list.
+```
 
- Noted. I've removed this task:
- 
-   [T][done] eat
- 
- Now you have 3 tasks in the list.
-`
+### Finding a task: `find`
+Finds task which description contains any of the given keywords.
 
-### Find task based on description :mag:
+Format: `find KEYWORD`
 
-Format:
+Example:
+`find party`
 
-`find [keyword]`
+Expected output:
+```
+Here are the matching tasks in your list:
+1.[E][X] Netflix party (at: 9pm, Recess Week)
+```
 
-Example of usage: 
+### Exiting the Duke: `bye`
+Exits the program.
 
-`find internship`
+Expected output:
+```
+Bye. Hope to see you again soon!
+```
 
-Expected outcome:
+### Saving the data:
 
- Here are the matching tasks in your list:
+Duke data are saved in the hard disk automatically.
 
-1.[D][not done] approve internship  (by: Dec 12 2020)
+## Command Summary
 
-### Many more to come :smiley:
+**Action** | **Format, Examples**
+------------ | -------------
+**todo**|`todo DESCRIPTION` <br>e.g., `todo Watch Crash Landing on You`
+**deadline**|`deadline DESCRIPTION /by TIME` <br>e.g., `deadline Submit movie review /by 17 Nov`
+**event**|`event DESCRIPTION /at TIME`<br>e.g., `event Netflix party /at 9pm, Recess Week`
+**list**|`list`
+**done**|`done [TASK_IDENTIFIER]` <br>e.g., `done 1`
+**delete**|`delete [TASK_IDENTIFIER]` <br>e.g., `delete 1`
+**find**|`find [KEYWORD]`<br>e.g., `find party`
+**exit**|`bye`
 
-
-## Contributors
-
-This is a solo project TT.
-
-## Contact Us
-
-- **Bug reports**, **Suggestions** : Email to [this email](adinatatan99@gmail.com) of you have any querries or suggestions.
-- **Contributing** : We welcome pull requests. Simply fork [this repository](https://github.com/adinata15/ip)
+## Support and comment
+Email [here](adinatatan99@gmail.com) for comments and extra support
