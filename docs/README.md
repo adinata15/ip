@@ -35,8 +35,8 @@ Example:
 Expected output:
 ```
 Got it. I've added this task:
-[T][X] Watch Crash Landing on You
-Now you have 1 task in the list.
+[T][not done] Watch Crash Landing on You
+Now you have 1 tasks in the list.
 ```
 
 ### Adding a new Deadline task: `deadline`
@@ -44,13 +44,15 @@ Adds a Deadline to the task list.
 
 Format: `deadline DESCRIPTION /by TIME`
 
+NB: TIME needs to be in YYYY-MM-DD format
+
 Example:
-`deadline Submit movie review /by 17 Nov`
+`deadline Submit movie review /by 2020-12-12`
 
 Expected output:
 ```
 Got it. I've added this task:
-[D][X] Submit movie review (by: 17 Nov)
+[D][not done] Submit movie review (by: Dec 12 2020)
 Now you have 2 tasks in the list.
 ```
 
@@ -59,13 +61,15 @@ Adds an Event to the task list.
 
 Format: `event DESCRIPTION /at TIME`
 
+NB: TIME needs to be in YYYY-MM-DD format
+
 Example:
-`event Netflix party /at 9pm, Recess Week`
+`event Netflix party /at 2020-12-12`
 
 Expected output:
 ```
 Got it. I've added this task:
-[E][X] Netflix party (at: 9pm, Recess Week)
+[E][not done] Netflix party (at: Dec 12 2020)
 Now you have 3 tasks in the list.
 ```
 
@@ -75,9 +79,9 @@ Shows a list of all tasks.
 Expected output:
 ```
 Here are the tasks in your list:
-1.[T][X] Watch Crash Landing on You
-2.[D][X] Submit movie review (by: 17 Nov)
-3.[E][X] Netflix party (at: 9pm, Recess Week)
+1.[T][not done] Watch Crash Landing on You
+2.[D][not done] Submit movie review (by: Dec 12 2020)
+3.[E][not done] Netflix party (at: Dec 12 2020)
 ```
 ### Marking a task as done: `done`
 Marks the specified task as done.
@@ -89,8 +93,8 @@ Example:
 
 Expected output:
 ```
-Okay! I've marked this task as done: Keep on going!
-[T][V] Watch Crash Landing on You
+Nice! I've marked this task as done:
+[done] Watch Crash Landing on You
 ```
 
 ### Deleting a task: `delete`
@@ -103,8 +107,8 @@ Example:
 
 Expected output:
 ```
-Noted. I've removed this task
- [T][V] Watch Crash Landing on You
+Noted. I've removed this task:
+ [T][done] Watch Crash Landing on You
 Now you have 2 tasks in the list.
 ```
 
@@ -119,7 +123,7 @@ Example:
 Expected output:
 ```
 Here are the matching tasks in your list:
-1.[E][X] Netflix party (at: 9pm, Recess Week)
+1.[E][not done] Netflix party (at: Dec 12 2020)
 ```
 
 ### Exiting the Duke: `bye`
@@ -139,8 +143,8 @@ Duke data are saved in the hard disk automatically.
 **Action** | **Format, Examples**
 ------------ | -------------
 **todo**|`todo DESCRIPTION` <br>e.g., `todo Watch Crash Landing on You`
-**deadline**|`deadline DESCRIPTION /by TIME` <br>e.g., `deadline Submit movie review /by 17 Nov`
-**event**|`event DESCRIPTION /at TIME`<br>e.g., `event Netflix party /at 9pm, Recess Week`
+**deadline**|`deadline DESCRIPTION /by TIME` <br>e.g., `deadline Submit movie review /by 2020-12-12`
+**event**|`event DESCRIPTION /at TIME`<br>e.g., `event Netflix party /at 2020-12-12`
 **list**|`list`
 **done**|`done [TASK_IDENTIFIER]` <br>e.g., `done 1`
 **delete**|`delete [TASK_IDENTIFIER]` <br>e.g., `delete 1`
