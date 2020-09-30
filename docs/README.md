@@ -16,7 +16,7 @@ Duke is a **chat-bot app to assist you in task management via a Command Line Int
 
 ## Quick Start 
 1. Verify that you have Java 11 or above installed in your computer.
-2. Download the latest `ip.jar`.
+2. Download the latest `IP_Week_2.jar`.
 3. Copy the file to a folder where you want to run it from.
 4. Using the terminal, navigate to the path of `IP_Week_2.jar`.
 5. Run `java -jar IP_Week_2.jar`
