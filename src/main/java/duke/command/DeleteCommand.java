@@ -31,6 +31,7 @@ public class DeleteCommand extends Command {
         int taskIndex = Integer.parseInt(taskIndexString);
         //leave out the removed task from list
         Task removedTask = tasks.remove(taskIndex);
+        storage.saveData();
         ui.displayDeleteMessage(removedTask);
     }
 
