@@ -30,6 +30,7 @@ public class DoneCommand extends Command {
         int taskIndex = Integer.parseInt(taskIndexString);
         //mark task as done
         tasks.getTask(taskIndex).markAsDone();
+        storage.saveData();
         tasks.getTask(taskIndex).printDoneMsg();
     }
 }
